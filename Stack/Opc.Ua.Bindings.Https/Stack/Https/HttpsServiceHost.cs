@@ -58,7 +58,7 @@ namespace Opc.Ua.Bindings
             EndpointDescriptionCollection endpoints = new EndpointDescriptionCollection();
 
             // create the endpoint configuration to use.
-            EndpointConfiguration endpointConfiguration = EndpointConfiguration.Create(configuration);
+            EndpointConfiguration endpointConfiguration = EndpointConfiguration.Create(configuration.TransportQuotas);
             string computerName = Utils.GetHostName();
 
             for (int ii = 0; ii < baseAddresses.Count; ii++)

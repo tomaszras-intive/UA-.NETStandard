@@ -25,7 +25,7 @@ namespace Opc.Ua
 	/// </summary>
 	public class ApplicationConfigurationSection
     {
-        #region IConfigurationSectionHandler Members	
+        #region IConfigurationSectionHandler Members
         /// <summary>
         /// Creates the configuration object from the configuration section.
         /// </summary>

@@ -2,7 +2,7 @@
  * Copyright (c) 2005-2020 The OPC Foundation, Inc. All rights reserved.
  *
  * OPC Foundation MIT License 1.00
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without
@@ -11,7 +11,7 @@
  * copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following
  * conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
@@ -68,7 +68,7 @@ namespace Opc.Ua.Client
             List<string> serverUrls = new List<string>();
 
             // set a short timeout because this is happening in the drop down event.
-            var endpointConfiguration = EndpointConfiguration.Create(configuration);
+            var endpointConfiguration = EndpointConfiguration.Create(configuration.TransportQuotas);
             endpointConfiguration.OperationTimeout = discoverTimeout;
 
             // Connect to the local discovery server and find the available servers.
@@ -89,7 +89,7 @@ namespace Opc.Ua.Client
                         string discoveryUrl = servers[ii].DiscoveryUrls[jj];
 
                         // Many servers will use the '/discovery' suffix for the discovery endpoint.
-                        // The URL without this prefix should be the base URL for the server. 
+                        // The URL without this prefix should be the base URL for the server.
                         if (discoveryUrl.EndsWith("/discovery"))
                         {
                             discoveryUrl = discoveryUrl.Substring(0, discoveryUrl.Length - "/discovery".Length);
@@ -244,7 +244,7 @@ namespace Opc.Ua.Client
         {
             EndpointDescription selectedEndpoint = null;
 
-            // select the best endpoint to use based on the selected URL and the UseSecurity checkbox. 
+            // select the best endpoint to use based on the selected URL and the UseSecurity checkbox.
             for (int ii = 0; ii < endpoints.Count; ii++)
             {
                 EndpointDescription endpoint = endpoints[ii];
@@ -280,7 +280,7 @@ namespace Opc.Ua.Client
                         selectedEndpoint = endpoint;
                     }
 
-                    // The security level is a relative measure assigned by the server to the 
+                    // The security level is a relative measure assigned by the server to the
                     // endpoints that it returns. Clients should always pick the highest level
                     // unless they have a reason not too.
                     // Some servers however, mess this up a bit. So prefer a higher SecurityMode

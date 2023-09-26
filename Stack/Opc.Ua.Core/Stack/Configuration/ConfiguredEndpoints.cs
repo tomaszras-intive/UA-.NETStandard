@@ -46,7 +46,7 @@ namespace Opc.Ua
         {
             Initialize();
 
-            m_defaultConfiguration = EndpointConfiguration.Create(configuration);
+            m_defaultConfiguration = EndpointConfiguration.Create(configuration.TransportQuotas);
 
             if (configuration.ClientConfiguration != null)
             {
@@ -71,7 +71,7 @@ namespace Opc.Ua
         {
             ConfiguredEndpointCollection endpoints = Load(filePath);
 
-            endpoints.m_defaultConfiguration = EndpointConfiguration.Create(configuration);
+            endpoints.m_defaultConfiguration = EndpointConfiguration.Create(configuration.TransportQuotas);
 
             // override the settings in the configuration.
             foreach (ConfiguredEndpoint endpoint in endpoints.Endpoints)
@@ -1101,7 +1101,7 @@ namespace Opc.Ua
                 // select best match
                 var match = SelectBestMatch(matches, discoveryUrl);
 
-                // update the endpoint.                        
+                // update the endpoint.
                 Update(match);
             }
             finally
@@ -1170,7 +1170,7 @@ namespace Opc.Ua
                 // select best match
                 var match = SelectBestMatch(matches, discoveryUrl);
 
-                // update the endpoint.                        
+                // update the endpoint.
                 Update(match);
             }
             finally
@@ -1253,7 +1253,7 @@ namespace Opc.Ua
 
         #region Public Properties
         /// <summary>
-        /// The collection that the endpoint belongs to. 
+        /// The collection that the endpoint belongs to.
         /// </summary>
         public ConfiguredEndpointCollection Collection
         {

@@ -2,7 +2,7 @@
  * Copyright (c) 2005-2020 The OPC Foundation, Inc. All rights reserved.
  *
  * OPC Foundation MIT License 1.00
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without
@@ -11,7 +11,7 @@
  * copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following
  * conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
@@ -63,8 +63,8 @@ namespace Opc.Ua.Client.Tests
             {
                 Assert.Ignore("Reverse connect fails on mac OS.");
             }
-        
-            // pki directory root for test runs. 
+
+            // pki directory root for test runs.
             PkiRoot = Path.GetTempPath() + Path.GetRandomFileName();
 
             // start ref server with reverse connect
@@ -180,7 +180,7 @@ namespace Opc.Ua.Client.Tests
             }
 
             // select the secure endpoint
-            var endpointConfiguration = EndpointConfiguration.Create(config);
+            var endpointConfiguration = EndpointConfiguration.Create(config.TransportQuotas);
             var selectedEndpoint = ClientFixture.SelectEndpoint(config, Endpoints, m_endpointUrl, securityPolicy);
             Assert.NotNull(selectedEndpoint);
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
@@ -224,7 +224,7 @@ namespace Opc.Ua.Client.Tests
             var config = ClientFixture.Config;
 
             // select the secure endpoint
-            var endpointConfiguration = EndpointConfiguration.Create(config);
+            var endpointConfiguration = EndpointConfiguration.Create(config.TransportQuotas);
             var selectedEndpoint = ClientFixture.SelectEndpoint(config, Endpoints, m_endpointUrl, securityPolicy);
             Assert.NotNull(selectedEndpoint);
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
@@ -238,7 +238,7 @@ namespace Opc.Ua.Client.Tests
 #endif
             var session = await sessionfactory.CreateAsync(config, ClientFixture.ReverseConnectManager, endpoint, updateBeforeConnect, checkDomain, "Reverse Connect Client",
                 MaxTimeout, new UserIdentity(new AnonymousIdentityToken()), null).ConfigureAwait(false);
-                
+
             Assert.NotNull(session);
 
             // header
